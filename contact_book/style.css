@@ -1,0 +1,100 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f4f4f4;
+}
+
+/* NAVBAR */
+.navbar {
+    background: #1976d2;
+    color: white;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar i {
+    margin-left: 15px;
+    cursor: pointer;
+}
+
+.search-bar {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    outline: none;
+}
+
+/* PAGES */
+.page {
+    padding: 15px;
+}
+
+/* CONTACT CARD */
+.contact-card {
+    background: white;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 6px;
+}
+
+.avatar {
+    background: #1976d2;
+    color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 40px;
+    font-weight: bold;
+}
+
+.details {
+    flex: 1;
+    margin-left: 10px;
+}
+
+.actions i {
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+/* FORM */
+.form-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.form-header i {
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+input, textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    background: #1976d2;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.error {
+    color: red;
+    margin-top: 10px;
+}
+
+.empty {
+    text-align: center;
+    color: gray;
+}
