@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="contactApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AngularJS Contact Book</title>
+
+    <!-- AngularJS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+
+    <!-- Icons -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body ng-controller="ContactController" ng-class="{'dark-mode': isDarkMode}">
+
+<!-- NAVBAR -->
+<div class="navbar">
+    <span class="title">Contact Book</span>
+    <div class="nav-icons">
+        <i class="fa fa-search" ng-click="toggleSearch()"></i>
+        <i class="fa fa-plus" ng-click="toggleForm()"></i>
+        <i class="fa" ng-class="isDarkMode ? 'fa-sun' : 'fa-moon'" ng-click="toggleDarkMode()"></i>
+    </div>
+</div>
+
+<!-- SEARCH BAR -->
+<input type="text" class="search-bar"
+       placeholder="Search contacts..."
+       ng-model="searchText"
+       ng-show="showSearch">
+
+<!-- TOAST POPUP -->
+<div class="toast" ng-show="toastMsg" ng-class="toastClass">
+    {{ toastMsg }}
+</div>
+
+<!-- FORM CARD & CONTACT LIST -->
+<div class="page">
+
+    <!-- FORM CARD -->
+    <div class="form-card" ng-show="showForm">
+        <div class="form-header">
+            <i class="fa fa-times" ng-click="toggleForm()"></i>
+            <span>{{ editMode ? 'Edit Contact' : 'Add Contact' }}</span>
+        </div>
+
+        <form ng-submit="saveContact()">
+
+            <div class="floating-input">
+                <input type="text" ng-model="contact.name" required placeholder=" ">
+                <label>Name</label>
+            </div>
+
+            <div class="floating-input">
+                <input type="text" ng-model="contact.mobile" required placeholder=" ">
+                <label>Mobile Number</label>
+            </div>
+
+            <div class="floating-input">
+                <input type="email" ng-model="contact.email" placeholder=" ">
+                <label>Email Address</label>
+            </div>
+
+            <div class="floating-input">
+                <textarea ng-model="contact.address" placeholder=" "></textarea>
+                <label>Address</label>
+            </div>
+
+            <button type="submit" class="animated-btn">
+                {{ editMode ? 'Update Contact' : 'Save Contact' }}
+            </button>
+        </form>
+    </div>
+
+    <!-- CONTACT LIST BELOW FORM -->
+    <div class="contact-list">
+        <h3>Saved Contacts ({{contacts.length}})</h3>
+
+        <div class="contact-card" ng-repeat="c in contacts | filter:searchText">
+            <div class="avatar">{{ c.name.charAt(0) }}</div>
+
+            <div class="details">
+                <h4>{{ c.name }}</h4>
+                <p><i class="fa fa-phone"></i> {{ c.mobile }}</p>
+                <p ng-if="c.email"><i class="fa fa-envelope"></i> {{ c.email }}</p>
+                <p ng-if="c.address"><i class="fa fa-home"></i> {{ c.address }}</p>
+            </div>
+
+            <div class="actions">
+                <i class="fa fa-pen" ng-click="editContact($index)"></i>
+                <i class="fa fa-trash" ng-click="deleteContact($index)"></i>
+            </div>
+        </div>
+
+        <p class="empty" ng-if="contacts.length === 0">
+            No Contacts Found
+        </p>
+    </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+    <p>AngularJS Contact Book &copy; 2026 | Developed by CHAVAN SHRUTI VIJAY</p>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>
